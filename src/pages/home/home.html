@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Viajeros APP
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+
+    <ion-refresher (ionRefresh)="recargar_viajeros($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+  <ion-list reorder="true">
+      <ion-item-sliding *ngFor="let viajero of viajeroList; let i= index" >
+    <ion-item>
+      <h2>{{ viajero.nombre | uppercase }}</h2>
+      <p>{{ viajero.correo }}</p>            
+    </ion-item> 
+    
+    <ion-item-options side="left">        
+        <button ion-button color="secondary">
+          <ion-icon name="brush"></ion-icon>
+          Editar
+        </button>
+      </ion-item-options>
+    
+      <ion-item-options side="right">
+        <button ion-button color="danger"
+        (click)="borrar_viajero(i)">
+          <ion-icon name="trash"></ion-icon>
+          Borrar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>   
+  </ion-list> 
+      <ion-fab right bottom>          
+          <button ion-fab (click)="agregarViajero()"><ion-icon name="add"></ion-icon></button>        
+        </ion-fab>
+      </ion-content>
+
+
